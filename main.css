@@ -1,0 +1,28 @@
+h2,h3 {
+    color: red;
+}
+textarea {
+    width: 105px;
+}
+#helpText {
+    display: none;
+}
+
+#printer {
+    margin-top: 0px;
+    white-space: pre;
+    /*background-color: azure;*/
+}
+
+td {
+    display: inline-block;
+    vertical-align: top;
+}
+
+b {
+    background-color: lightcyan;
+    color: red;
+}
+.red {
+    color: red;
+}

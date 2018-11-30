@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Turing</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<h3>UTM</h3>
+<table>
+    <tr>
+        <td>
+
+            <textarea id="rulesText" rows="20" cols="12">
+as = bsR
+.s = .sSTOP
+
+aaaaa s
+            </textarea>
+            <div>
+                <button id="runButton"> >> </button>
+                <button id="initButton"> ■ </button>
+                <button id="stepButton"> > </button>
+                <button id="helpButton"> ? </button>
+            </div>
+        </td>
+        <td>
+            <pre id="printer"></pre>
+        </td>
+    </tr>
+</table>
+<pre id="helpText">Правило имеет вид <b> ab = cdM </b>, где
+     a - обозреваемый символ
+     b - текущее состояние машины
+     c - новый символ
+     d - новое состояние машины
+     M - движение головки: L - влево, R - вправо,
+         STOP (или R STOP) - останов, пусто - головка на месте.
+
+В алфавите символов пустая ячейка обозначается точкой.
+Знак равенства не входит в алфавиты символов и состояний.
+Комментарий - знак равенства в начале строки.
+
+Последняя строка в списке команд - входное слово.
+Последний символ в последней строке - начальное состояние машины.
+Пробелы и пустые строки не важны нигде и никогда.
+
+Исходное положение - головка над началом входного слова.
+Конечное положение - выходное слово слева от головки.
+
+</pre>
+
+<script src="model.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
