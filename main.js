@@ -50,11 +50,29 @@ helpButton.onclick = function () {
 };
 
 function print(t) {
-    const margin = 12;
     let tick = (' ' + t.tick).slice(-2);
     let pos = t.headPos;
-    let left = t.tape.slice(pos - margin, pos).join('');
-    let right = t.tape.slice(pos + 1, pos + margin).join('');
+
+    let left = t.tape.slice(MARGIN - 5, pos).join('');
+    let right = t.tape.slice(pos + 1, MARGIN + 25).join('') ;
     let state = (t.state + '    ').slice(0, 5);
-    printer.innerHTML += `${tick}. <span class="red">${state}</span>${left}<b>${t.tape[pos]}</b>${right}  \n`
+
+    printer.innerHTML +=
+        "<span class='gray'>" + tick + "</span>"
+        + ". <span class='black'>" + state + "</span>"
+        + "<span class='gray'>" + left + "</span>"
+        + "<span class='under-head'>" + t.tape[pos] + "</span>"
+        + "<span class='gray'>" + right + "</span>\n";
+
+    // hilight rule
+    let leftPart = '\n' + t.tape[t.headPos] + t.state[0];
+
+    let i = ('\n' + rulesText.value).indexOf(leftPart);
+    if (i !== -1) {
+        rulesText.selectionStart = i;
+        rulesText.selectionEnd = rulesText.value.indexOf('\n', i + 3);
+    } else {
+        rulesText.selectionEnd = rulesText.selectionStart;
+    }
+    rulesText.focus()
 }

@@ -1,17 +1,18 @@
 h2,h3 {
-    color: red;
+    color: mediumblue;
 }
 textarea {
-    width: 105px;
+    width: 110px;
+    height: 300px;
 }
 #helpText {
     display: none;
 }
 
 #printer {
-    margin-top: 0px;
+    margin-top: 0;
+    margin-left: 10px;
     white-space: pre;
-    /*background-color: azure;*/
 }
 
 td {
@@ -19,10 +20,21 @@ td {
     vertical-align: top;
 }
 
-b {
-    background-color: lightcyan;
-    color: red;
+.black {
+    color: black;
 }
-.red {
-    color: red;
+
+.gray {
+    color: gray;
+}
+
+.under-head {
+    font-weight: bold;
+    text-decoration: underline;
+    color: mediumblue;
+
+}
+
+button {
+    color: blue;
 }

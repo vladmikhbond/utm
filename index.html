@@ -9,24 +9,25 @@
 <h3>UTM</h3>
 <table>
     <tr>
-        <td>
+      <td>
 
-            <textarea id="rulesText" rows="20" cols="12">
-as = bsR
+        <textarea id="rulesText">as = bsR
 .s = .sSTOP
 
-aaaaa s
-            </textarea>
-            <div>
-                <button id="runButton"> >> </button>
-                <button id="initButton"> ■ </button>
-                <button id="stepButton"> > </button>
-                <button id="helpButton"> ? </button>
-            </div>
-        </td>
-        <td>
-            <pre id="printer"></pre>
-        </td>
+aaaaa
+        </textarea>
+        <div>
+          <button id="runButton"> >></button>
+          <button id="initButton"> ■</button>
+          <button id="stepButton"> ></button>
+          <button id="helpButton"> ?</button>
+        </div>
+
+      </td>
+      <td>
+
+        <pre id="printer"></pre>
+      </td>
     </tr>
 </table>
 <pre id="helpText">Правило имеет вид <b> ab = cdM </b>, где
@@ -35,14 +36,14 @@ aaaaa s
      c - новый символ
      d - новое состояние машины
      M - движение головки: L - влево, R - вправо,
-         STOP (или R STOP) - останов, пусто - головка на месте.
+         STOP (или RSTOP) - останов, пусто - головка неподвижна.
 
 В алфавите символов пустая ячейка обозначается точкой.
 Знак равенства не входит в алфавиты символов и состояний.
 Комментарий - знак равенства в начале строки.
 
 Последняя строка в списке команд - входное слово.
-Последний символ в последней строке - начальное состояние машины.
+Исходное состояние машины совпадает с "текущим состоянием" самого первого правила.
 Пробелы и пустые строки не важны нигде и никогда.
 
 Исходное положение - головка над началом входного слова.
