@@ -3,22 +3,20 @@ const ERROR = 'ERROR';
 const MARGIN = 1000;  // tape length to one side
 
 class Turing {
-    constructor(rules) {
+    constructor(rules, input) {
 
         // rules
         this.rules = rules.split('\n')
             .filter(r => !r.startsWith('='))
             .map( r => r.replace(/[=\s]/g, '') )
             .filter(r => r );
-        let lastLine = this.rules[this.rules.length - 1];
-        this.rules.length--;
         // state
         this.state = this.rules[0][1];
         // tape
         this.headPos = MARGIN;
         this.tape = Array(2 * MARGIN).fill('.');
-        for (let i = 0; i < lastLine.length; i++)
-            this.tape[this.headPos + i] = lastLine[i];
+        for (let i = 0; i < input.length; i++)
+            this.tape[this.headPos + i] = input[i];
         //
         this.tick = 0;
     }
@@ -52,4 +50,43 @@ class Turing {
         return this.state === STOP || this.state === ERROR
     }
 
+    get output() {
+        let i = this.headPos - 1;
+        while(this.tape[i] !== '.' && i)
+            i--;
+        return this.tape.slice(i + 1, this.headPos).join('');
+    }
+
+
+    static exec(rules, input) {
+        const INFINITY = MARGIN * 2;
+        let tm = new Turing(rules, input);
+        for (let t = 0; t < INFINITY && !tm.stopped; t++) {
+            tm.step();
+            if (tm.state === ERROR)
+                return ERROR;
+            if (tm.state === STOP)
+                return tm.output;
+        }
+        return ERROR;
+    }
 }
+
+let rules = `0s = 0sR
+1s = 1uR
+.s = .sSTOP
+
+1u = 1uR
+0u = 1rL
+.u = .uSTOP
+
+1r = 0bL
+
+0b = 0bL
+1b = 1bL
+.b = .sR
+`;
+let res = Turing.exec(rules, "010101");
+
+console.log(res);
+

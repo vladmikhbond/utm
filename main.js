@@ -4,6 +4,7 @@ let stepButton = document.getElementById("stepButton");
 let helpButton = document.getElementById("helpButton");
 let helpText = document.getElementById("helpText");
 let rulesText = document.getElementById("rulesText");
+let input = document.getElementById("input");
 let printer = document.getElementById("printer");
 let tm;
 let timer;
@@ -11,9 +12,11 @@ let timer;
 init();
 
 initButton.onclick = init;
+stepButton.onclick = step;
+runButton.onclick = run;
+
 function init() {
-    let rules = rulesText.value.trim();
-    tm = new Turing(rules);
+    tm = new Turing(rulesText.value.trim(), input.value.trim());
     printer.innerHTML = "";
     if (timer) {
         clearInterval(timer);
@@ -22,7 +25,6 @@ function init() {
     print(tm);
 }
 
-stepButton.onclick = step;
 function step() {
     if (tm.stopped)
         return;
@@ -30,7 +32,6 @@ function step() {
     print(tm);
 }
 
-runButton.onclick = run;
 function run() {
     init();
     timer = setInterval(function() {
