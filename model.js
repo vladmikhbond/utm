@@ -11,7 +11,7 @@ class Turing {
             .map( r => r.replace(/[=\s]/g, '') )
             .filter(r => r );
         // state
-        this.state = this.rules[0][1];
+        this.state = this.rules[0][0];
         // tape
         this.headPos = MARGIN;
         this.tape = Array(2 * MARGIN).fill('.');
@@ -25,13 +25,13 @@ class Turing {
         if (this.stopped)
             return;
         this.tick++;
-        let charAndState = this.tape[this.headPos] + this.state;
+        let sc = this.state + this.tape[this.headPos];
         for (let i = 0; i < this.rules.length; i++)
         {
             let rule = this.rules[i];
-            if (rule.substr(0, 2) === charAndState) {
-                this.tape[this.headPos] = rule[2];
-                this.state = rule[3];
+            if (rule.substr(0, 2) === sc) {
+                this.tape[this.headPos] = rule[3];
+                this.state = rule[2];
 
                 if (rule[4] === 'L')
                     this.headPos--;
@@ -71,20 +71,20 @@ class Turing {
         return ERROR;
     }
 }
+// сортировка
+let rules = `s0 = s0R
+s1 = u1R
+s. = s.STOP
 
-let rules = `0s = 0sR
-1s = 1uR
-.s = .sSTOP
+u1 = u1R
+u0 = r1L
+u. = u.STOP
 
-1u = 1uR
-0u = 1rL
-.u = .uSTOP
+r1 = b0L
 
-1r = 0bL
-
-0b = 0bL
-1b = 1bL
-.b = .sR
+b0 = b0L
+b1 = b1L
+b. = s.R
 `;
 let res = Turing.exec(rules, "010101");
 

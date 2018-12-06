@@ -13,7 +13,8 @@ textarea {
 
 #helpText {
     display: none;
-    border: thin solid;
+    border: thin solid gray;
+    padding: 5px;
 }
 
 #printer {
