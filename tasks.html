@@ -8,105 +8,105 @@
 <>
 <h4>Увеличить унарное число на 1</h4>
 <pre>
-1a = 1aR
-.a = 1bRSTOP
+a1 = a1R
+a. = b1RSTOP
 =======
 111111
 </pre>
 
 <h4>Сложить два унарных числа</h4>
 <pre>
-1a = .bR
-1b = 1bR
-+b = 1bR
-.b = .bSTOP
+a1 = b.R
+b1 = b1R
+b+ = b1R
+b. = b.STOP
 ====
 111+11
 </pre>
 
 <h4>Умножить унарное число на 2</h4>
 <pre>
-1a = .bR
-1b = 1bR
-.b = 2cR
-.c = 2dL
-2d = 2dL
-1d = 1dL
-.d = .aR
-2b = 2bR
-2a = 2e
-2e = 1eR
-.e = .eSTOP
+a1 = b.R
+b1 = b1R
+b. = c2R
+c. = d2L
+d2 = d2L
+d1 = d1L
+d. = a.R
+b2 = b2R
+a2 = e2
+e2 = e1R
+e. = e.STOP
 =======
 11
 </pre>
 
 <h4>Вычесть из большего числа меньшее</h4>
 <pre>
-1a = 1aR
--a = -bR
-1b = -cL
--c = -cL
-1c = -bR
--b = -bR
-.b = .dL
--d = .dL
-1d = 1dRSTOP
+a1 = a1R
+a- = b-R
+b1 = c-L
+c- = c-L
+c1 = b-R
+b- = b-R
+b. = d.L
+d- = d.L
+d1 = d1RSTOP
 =====
 1111-11
 </pre>
 
 <h4>Проверить правильность расстановки скобок в выражениях вида  ()*(*(***)**)</h4>
 <pre>
-*s = *sR
-(s = (sR
-)s = *aL
-.s = .bL
+s* = s*R
+s( = s(R
+s) = a*L
+s. = b.L
 
-*a = *aL
-(a = *sR
-.a = NaRSTOP
+a* = a*L
+a( = s*R
+a. = aNRSTOP
 
-(b = NbRSTOP
-*b = *bL
-.b = YbRSTOP
+b( = bNRSTOP
+b* = b*L
+b. = bYRSTOP
 
-(*)((*)*) )
+()(()))
 </pre>
 
 <h4>Очень простая сортировка</h4>
 <pre>
-0s = 0sR
-1s = 1uR
-.s = .sSTOP
+s0 = s0R
+s1 = u1R
+s. = s.STOP
 
-1u = 1uR
-0u = 1rL
-.u = .uSTOP
+u1 = u1R
+u0 = r1L
+u. = u.STOP
 
-1r = 0bL
+r1 = b0L
 
-0b = 0bL
-1b = 1bL
-.b = .sR
+b0 = b0L
+b1 = b1L
+b. = s.R
 
 001010
 </pre>
 
 <h4>Один проход пузырька</h4>
 <pre>
-0s = 0zR
-1s = 1uR
+s0 = z0R
+s1 = u1R
 
-0z = 0zR
-1z = 1uR
-.z = .zSTOP
+z0 = z0R
+z1 = u1R
+z. = z.STOP
 
-1u = 1uR
-0u = 1rL
-.u = .uSTOP
+u1 = u1R
+u0 = r1L
+u. = u.STOP
 
-1r = 0uR
+r1 = u0R
 
 0001010
 </pre>

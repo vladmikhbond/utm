@@ -65,8 +65,8 @@ function print(t) {
         + "<span class='under-head'>" + t.tape[pos] + "</span>"
         + "<span class='gray'>" + right + "</span>\n";
 
-    // hilight rule
-    let leftPart = '\n' + t.tape[t.headPos] + t.state[0];
+    // highlight rule
+    let leftPart = '\n' + t.state[0] + t.tape[t.headPos];
 
     let i = ('\n' + rulesText.value).indexOf(leftPart);
     if (i !== -1) {
