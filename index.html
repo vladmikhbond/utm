@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Turing</title>
-    <link rel="stylesheet" href="main.css">
+    <title>UTM</title>
+    <link rel="stylesheet" href="app.css">
 </head>
 <body>
 <h3>UTM</h3>
@@ -11,15 +11,15 @@
     <tr>
       <td>
 
-        <textarea id="rulesText">sa = sbR
+        <textarea id="rulesArea">sa = sbR
 s. = s.STOP
         </textarea>
         <div>
           <input id="input" value="aaaaaa">
         </div>
         <div>
-          <button id="runButton"> >></button>
           <button id="initButton"> ■</button>
+          <button id="runButton"> >></button>
           <button id="stepButton"> ></button>
           <button id="helpButton"> ?</button>
         </div>
@@ -43,7 +43,7 @@ s. = s.STOP
 Знак равенства не входит в алфавиты символов и состояний.
 Комментарий - знак равенства в начале строки.
 
-Начальным состоянием машины считается "текущее состояние" из первого правила.
+Начальным состоянием машины считается состояние из левой части первого правила.
 Пробелы и пустые строки не важны нигде и никогда.
 
 Исходное положение - головка над началом входного слова, например, ...<span class="under-head">i</span>nput....

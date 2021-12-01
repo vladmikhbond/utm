@@ -39,10 +39,15 @@ td {
 .under-head {
     font-weight: bold;
     text-decoration: underline;
-    color: mediumblue;
+    color: red
 
 }
 
 button {
     color: blue;
+}
+
+textarea::selection {
+    color: black;
+    background:rgb(248, 184, 177)
 }

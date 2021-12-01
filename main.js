@@ -3,13 +3,11 @@ let runButton = document.getElementById("runButton");
 let stepButton = document.getElementById("stepButton");
 let helpButton = document.getElementById("helpButton");
 let helpText = document.getElementById("helpText");
-let rulesText = document.getElementById("rulesText");
+let rulesText = document.getElementById("rulesArea");
 let input = document.getElementById("input");
 let printer = document.getElementById("printer");
 let tm;
 let timer;
-
-init();
 
 initButton.onclick = init;
 stepButton.onclick = step;
@@ -17,12 +15,21 @@ runButton.onclick = run;
 
 function init() {
     tm = new Turing(rulesText.value.trim(), input.value.trim());
+    alignRulesArea();
     printer.innerHTML = "";
     if (timer) {
         clearInterval(timer);
         timer = null;
     }
     print(tm);
+}
+
+function alignRulesArea() {
+    let ss = rulesText.value.split('\n');
+    let maxLength = Math.max(...ss.map(s => s.trim().length));
+    ss = ss.map(s => (s + '                  ').slice(0, maxLength+1));
+    rulesText.value = ss.join('\n');
+
 }
 
 function step() {
@@ -50,23 +57,23 @@ helpButton.onclick = function () {
         helpText.style.display = 'none'
 };
 
-function print(t) {
-    let tick = (' ' + t.tick).slice(-2);
-    let pos = t.headPos;
+function print(tm) {
+    let tick = (' ' + tm.tick).slice(-2);
+    let pos = tm.headPos;
 
-    let left = t.tape.slice(MARGIN - 5, pos).join('');
-    let right = t.tape.slice(pos + 1, MARGIN + 25).join('') ;
-    let state = (t.state + '    ').slice(0, 5);
+    let left = tm.tape.slice(MARGIN - 5, pos).join('');
+    let right = tm.tape.slice(pos + 1, MARGIN + 25).join('') ;
+    let state = (tm.state + '    ').slice(0, 5);
 
     printer.innerHTML +=
         "<span class='gray'>" + tick + "</span>"
         + ". <span class='black'>" + state + "</span>"
         + "<span class='gray'>" + left + "</span>"
-        + "<span class='under-head'>" + t.tape[pos] + "</span>"
+        + "<span class='under-head'>" + tm.tape[pos] + "</span>"
         + "<span class='gray'>" + right + "</span>\n";
 
     // highlight rule
-    let leftPart = '\n' + t.state[0] + t.tape[t.headPos];
+    let leftPart = '\n' + tm.state[0] + tm.tape[tm.headPos];
 
     let i = ('\n' + rulesText.value).indexOf(leftPart);
     if (i !== -1) {
@@ -77,3 +84,7 @@ function print(t) {
     }
     rulesText.focus()
 }
+
+//////////////////////// main /////////////////////
+
+init();
