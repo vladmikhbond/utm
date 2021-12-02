@@ -74,8 +74,11 @@ function print(tm) {
 
     // highlight rule
     let leftPart = '\n' + tm.state[0] + tm.tape[tm.headPos];
-
     let i = ('\n' + rulesText.value).indexOf(leftPart);
+    if (i == -1) {
+        leftPart = leftPart.slice(0, -1) + "_";
+        i = ('\n' + rulesText.value).indexOf(leftPart);
+    }
     if (i !== -1) {
         rulesText.selectionStart = i;
         rulesText.selectionEnd = rulesText.value.indexOf('\n', i + 3);

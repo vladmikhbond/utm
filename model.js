@@ -11,7 +11,7 @@ class Turing {
             .map( r => r.replace(/[=\s]/g, '') )
             .filter(r => r );
         // state
-        this.state = this.rules[0][0];
+        this.state = this.rules[0] ? this.rules[0][0] : 's';
         // tape
         this.headPos = MARGIN;
         this.tape = Array(2 * MARGIN).fill('.');
@@ -25,19 +25,26 @@ class Turing {
         if (this.stopped)
             return;
         this.tick++;
-        let sc = this.state + this.tape[this.headPos];
-        for (let i = 0; i < this.rules.length; i++)
+        // state & char on tape
+        const s = this.state, c = this.tape[this.headPos], sc = s + c;   // sc = state + char
+        
+        // rule = [0-state, 1-char, 2-newState, 3-newChar, 4-move]
+        for (let rule of this.rules)
         {
-            let rule = this.rules[i];
-            if (rule.substr(0, 2) === sc) {
-                this.tape[this.headPos] = rule[3];
+            if (rule[0] == s && (rule[1] == c || rule[1] == '_')) {
+                // new char
+                if (rule[1] == c || rule[3] != '_') 
+                    this.tape[this.headPos] = rule[3];
+                   
+                // new state                
                 this.state = rule[2];
 
+                // move
                 if (rule[4] === 'L')
                     this.headPos--;
                 else if (rule[4] === 'R')
                     this.headPos++;
-
+                // stop
                 if (rule[4] === 'S' || rule[5] === 'S')
                     this.state = STOP;
                 return
